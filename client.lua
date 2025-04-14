@@ -2,7 +2,7 @@ local tourPoints = Config.TourPoints
 
 CreateThread(function()
     local startPedModel = Config.PedModel
-    RequestModel(startPedModel)
+    lib.requestModel(startPedModel)
     while not HasModelLoaded(startPedModel) do Wait(0) end
 
     local ped = CreatePed(0, startPedModel, Config.StartPedCoords, false, true)
@@ -30,8 +30,8 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
     local vehicleModel = Config.CarModel
     local driverModel = Config.PedModel
 
-    RequestModel(vehicleModel)
-    RequestModel(driverModel)
+    lib.requestModel(vehicleModel)
+    lib.requestModel(driverModel)
     while not HasModelLoaded(vehicleModel) or not HasModelLoaded(driverModel) do Wait(0) end
 
     DoScreenFadeOut(500)
