@@ -6,7 +6,7 @@ Config.AllowSkip = true -- if you want the player to be able to skip the drive t
 
 Config.PedModel = `u_m_m_jewelsec_01`
 
-Config.CarModel = `oracle`
+Config.CarModel = `comet7`
 
 Config.StartPedCoords = vector4(-1039.32, -2729.92, 19.21, 297.19) -- the ped you target coords
 
