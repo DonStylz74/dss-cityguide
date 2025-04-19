@@ -8,7 +8,7 @@ Config.PedModel = `u_m_m_jewelsec_01`
 
 Config.CarModel = `vorschlaghammer`
 
-Config.StartPedCoords = vector4(-1031.79, -2734.55, 20.16, 111.91) -- the ped you target coords
+Config.StartPedCoords = vector4(-1031.79, -2734.55, 19.19, 111.91) -- the ped you target coords
 
 Config.CarSpawn = vector4(-1093.5, -2674.22, 20.03, 202.36) -- this is where the car spawns for the cinematic camera
 
