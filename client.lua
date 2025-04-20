@@ -29,19 +29,37 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
     local driveto = Config.CarDriveTo
     local vehicleModel = Config.CarModel
     local driverModel = Config.PedModel
+    local roofState = Config.RoofState -- Get roof state from config ("up" or "down")
+    local numberPlate = Config.NumberPlateText -- Get number plate text from config
 
     lib.requestModel(vehicleModel)
     lib.requestModel(driverModel)
-    while not HasModelLoaded(vehicleModel) or not HasModelLoaded(driverModel) do Wait(0) end
 
-    DoScreenFadeOut(500)
-    while not IsScreenFadedOut() do Wait(10) end
+    while not HasModelLoaded(vehicleModel) or not HasModelLoaded(driverModel) do
+        Wait(0)
+    end
+
+    DoScreenFadeOut(1500)
+    while not IsScreenFadedOut() do
+        Wait(10)
+    end
 
     local vehicle = CreateVehicle(vehicleModel, spawnPoint.x, spawnPoint.y, spawnPoint.z, spawnPoint.w, true, false)
+
+    -- Assign number plate text
+    SetVehicleNumberPlateText(vehicle, numberPlate)
+
+    -- Set convertible roof state based on config
+    if roofState == "down" then
+        SetVehicleExtra(vehicle, Config.VehicleRoofDownExtra, 0) -- Enable roof down
+        --SetVehicleExtra(vehicle, Config.VehicleRoofUpExtra, 1)   -- Disable roof up
+    elseif roofState == "up" then
+        SetVehicleExtra(vehicle, Config.VehicleRoofUpExtra, 0)   -- Enable roof up
+        --SetVehicleExtra(vehicle, Config.VehicleRoofDownExtra, 1) -- Disable roof down
+    end
+        
     local driver = CreatePedInsideVehicle(vehicle, 4, driverModel, -1, true, false)
-
-    DoScreenFadeIn(1000)
-
+    DoScreenFadeIn(3000)
     TaskVehicleDriveToCoordLongrange(driver, vehicle, driveto, 10.0, 786603, 5.0)
 
     local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
