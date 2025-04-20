@@ -4,11 +4,11 @@ Config.UseQB = false -- i could not find out why the car keys wouldnt be given t
  
 Config.AllowSkip = true -- if you want the player to be able to skip the drive to the next point
 
-Config.PedModel = `u_m_m_jewelsec_01`
+Config.PedModel = `S_M_M_LSMetro_01`
 
-Config.CarModel = `buccaneer2`   ---  windsor2
+Config.CarModel = `tourbus`   ---  windsor2 - buccaneer2
 
-Config.RoofState = "down" -- Set to "up" or "down" to choose the roof state
+Config.RoofState = "up" -- Set to "up" or "down" to choose the roof state - set to 'up' for hard top roofs & 'down' for convertible's
 Config.NumberPlateText = "CITYTOUR" -- Set your desired number plate text
 Config.VehicleRoofDownExtra = 1 -- DONT TOUCH  -  Replace with the extra ID for roof down
 Config.VehicleRoofUpExtra = 2 -- DONT TOUCHReplace with the extra ID for roof up
