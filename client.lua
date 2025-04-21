@@ -22,6 +22,12 @@ CreateThread(function()
             label = 'Free 20min City Tour',
 			distance = 5.0,
             onSelect = function()
+                -- Play the ped animation
+                TaskStartScenarioInPlace(ped, Config.AnimationScenariotxt, 0, true)
+                Citizen.Wait(6000)
+                -- Play the ped animation
+                TaskStartScenarioInPlace(ped, Config.AnimationScenario, 0, true)
+                -- Trigger the server event
                 TriggerServerEvent('tropic-cityguide:startTour')
             end
         }
@@ -70,7 +76,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 
 
     local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
-    AttachCamToEntity(cam, vehicle, -10.0, 0.0, 5.0, true)
+    AttachCamToEntity(cam, vehicle, -7.0, 0.0, 2.5, true)
     PointCamAtEntity(cam, vehicle, 0.0, 0.0, 0.0, true)
     SetCamActive(cam, true)
     RenderScriptCams(true, true, 1500, true, true)
