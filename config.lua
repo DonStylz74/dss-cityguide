@@ -4,92 +4,113 @@ Config.UseQB = false -- i could not find out why the car keys wouldnt be given t
  
 Config.AllowSkip = true -- if you want the player to be able to skip the drive to the next point
 
-Config.PedModel = `S_M_M_LSMetro_01`
+Config.PedModel = `cs_jimmydisanto`   --  S_M_M_LSMetro_01  -  u_m_m_jewelsec_01 - ig_g
+Config.AnimationScenario = 'WORLD_HUMAN_SMOKING' -- Replace with your desired animation scenario
 
-Config.CarModel = `tourbus`   ---  windsor2 - buccaneer2
+Config.CarModel = `comet7`   ---  comet7 - windsor2 - buccaneer2 - vigero3 - dominator9 - rt3000 - tornado5 - tornado2 - surano - rapidgt2 - ninef2 - zion2 - felon2 - convertable vehicles
+Config.RoofState = "down" -- Set roof "up" or "down" used for convertible vehicle's
+Config.NumberPlateText = "freetour" -- Set your desired number plate text
+Config.PedModelDriver = `player_zero`   --  S_M_M_LSMetro_01  -  u_m_m_jewelsec_01
 
-Config.RoofState = "up" -- Set to "up" or "down" to choose the roof state - set to 'up' for hard top roofs & 'down' for convertible's
-Config.NumberPlateText = "CITYTOUR" -- Set your desired number plate text
-Config.VehicleRoofDownExtra = 1 -- DONT TOUCH  -  Replace with the extra ID for roof down
-Config.VehicleRoofUpExtra = 2 -- DONT TOUCHReplace with the extra ID for roof up
+Config.ReturnToStart = false -- Toggle end tour spawn option (true to spawn back, false to exit the vehicle)
 
-Config.StartPedCoords = vector4(-1031.78, -2736.54, 19.18, 103.91) -- the ped you target coords
+Config.StartPedCoords = vector4(-1043.34, -2738.80, 12.94, 323.42) -- the ped you target coords  -1043.4436, -2737.9719, 20.1693, 204.1283
 
-Config.CarSpawn = vector4(-1093.5, -2674.22, 20.03, 202.36) -- this is where the car spawns for the cinematic camera
+Config.CarSpawn = vector4(-1090.7405, -2683.4019, 13.4173, 268.6733) -- this is where the car spawns for the cinematic camera
 
-Config.CarDriveTo = vector3(-1029.08, -2732.01, 20.11) -- where the car drives to pick the player up
+Config.CarDriveTo = vector3(-1037.91, -2720.37, 13.35) -- where the car drives to pick the player up
 
 Config.TourPoints = {
     {
-        coords = vector3(-66.5466, -1763.5717, 29.2404), -- coords the ped drives to
+        coords = vector3(-313.85, -1491.51, 30.46), -- coords the ped drives to
         title = "Gas Stations",
         message = 'You can go to one of the many Gas Stations around the city to get fuel for your vehicles as well as your basic food & drink needs, and who knows maybe you can take some cash from those registers or safes.',
     },
     {
-        coords = vector3(96.3946, -1403.6470, 29.1773), -- coords the ped drives to
+        coords = vector3(88.45, -1391.84, 29.20), -- coords the ped drives to
         title = "Clothing Stores",
         message = 'You can go to one of the Clothing Stores around the city to get your fashion fix, Shirts, Shorts, Hats. You name it they have it!.',
     },
     {
-        coords = vector3(20.6892, -1126.6708, 28.9690), -- coords the ped drives to
-        title = "Ammunation Gunstore",
-        message = 'You can go to one of the many Ammunation Stores the around city to get to get yourself some personal protection. Knives, Guns, Armour. You name it they have it!.',
-    },
-    {
-        coords = vector3(-54.1207, -1110.4762, 26.4374), -- coords the ped drives to
-        title = "Vehicle Dealership",
+        coords = vector3(-53.58, -1109.88, 26.43), -- coords the ped drives to
+        title = "Vehicle Dealerships",
         message = 'You can go to one of the many Vehicle Dealerships around the city to get to get yourself a new sweet ride.',
     },
     {
-        coords = vector3(-210.8521, -924.2083, 29.2541), -- coords the ped drives to
-        title = "LS Job Centre",
-        message = 'Need a Job, Head to LS Job Centre and find your future career, and dont forgot to pick up you paycheck whilst your here.',
-    },
-    {
-        coords = vector3(-1079.3391, -1282.7717, 5.7009), -- coords the ped drives to
+        coords = vector3(-1079.33, -1282.77, 5.70), -- coords the ped drives to
         title = "Los Santos DMV",
         message = 'So want to drive a vehicle?, Make sure you stop here to pick up an appropriate license.',
     },
     {
-        coords = vector3(-1158.3462, -1415.3473, 4.7963), -- coords the ped drives to
+        coords = vector3(-1158.34, -1415.34, 4.79), -- coords the ped drives to
         title = "Tattoo Stores",
         message = 'You can go to one of the many Tattoo Stores around the city to get yourself a fresh looking tattoo.',
     },
     {
-        coords = vector3(-1232.7570, -898.1537, 11.5089), -- coords the ped drives to
-        title = "Liquor Stores",
+        coords = vector3(-1236.44, -898.96, 12.00), -- coords the ped drives to
+        title = "Rob's Liquor Stores",
         message = 'You can go to one of the many Liquor Stores around the city pick yourself up some great liquor or even just a ecola!.',
     },
     {
-        coords = vector3(-827.6496, -198.4962, 37.4726), -- coords the ped drives to
+        coords = vector3(-827.12, -199.49, 37.46), -- coords the ped drives to
         title = "Hair Dressers",
         message = 'You can go to one of the many Hair Dressers around the city get yourself a new fresh hairstyle!.',
     },
     {
-        coords = vector3(-373.5792, -128.1203, 38.6806), -- coords the ped drives to
-        title = "Los Santos Customs",
+        coords = vector3(-373.57, -128.12, 38.68), -- coords the ped drives to
+        title = "Los Santos Custom   s",
         message = 'You can go to one of the many Los Santos Customs around the city to get your vehciles Repair, Upgraded and Customized at a great price!.',
     },
     {
-        coords = vector3(373.9365, 314.2357, 102.8586), -- coords the ped drives to
-        title = "24/7 Stores",
-        message = 'You can go to one of the 24/7s around city to get your basic food & drink needs, and who knows maybe you can take some cash from those registers or safes.',
+        coords = vector3(234.25, -40.35, 69.70), -- coords the ped drives to
+        title = "Ammunation Gunstores",
+        message = 'You can go to one of the many Ammunation Stores the around city to get to get yourself some personal protection. Knives, Guns, Armour. You name it they have it!.',
     },
     {
-        coords = vector3(317.1888, -266.9305, 53.2589), -- coords the ped drives to
-        title = "Fleeca Bank",
+        coords = vector3(373.93, 314.23, 102.85), -- coords the ped drives to
+        title = "24/7 Stores",
+        message = 'You can go to one of the many 24/7s around city to get your basic food & drink needs, and who knows maybe you can take some cash from those registers or safes.',
+    },
+    {
+        coords = vector3(317.18, -266.93, 53.25), -- coords the ped drives to
+        title = "Fleeca Banks",
         message = 'You can go to one of the many fleeca banks around city to withdraw/deposit your money, i wonder how much money is in the vault back there.',
     },
     {
         coords = vector3(293.12, -584.58, 43.19),
-        title = "Pillbox Hospital️",
-        message = 'You can come here to cure any injuries that may occur. even have plastic surgery tand completly change the way you look!',
+        title = "Emergency Hospital️s",
+        message = 'You can come here to cure any injuries that may occur. even have plastic surgery to completly change the way you look!',
     },
     {
-        coords = vector3(878.3406, -11.7119, 78.2168),
+        coords = vector3(-182.65, -1134.29, 23.06), -- coords the ped drives to
+        title = "Impound Yards",
+        message = 'Come to the Impound Yard to collect your car if its been impounded or its missing from your garage, you must have been up to no good!, if your car is here!.',
+    },
+    {
+        coords = vector3(402.52, -980.30, 29.39), -- coords the ped drives to
+        title = "Police Departments",
+        message = 'When ever you in trouble, you can call or visit the LSPD, But i wouldnt expect too much!.',
+    },
+    {
+        coords = vector3(919.08, -190.48, 73.51), -- coords the ped drives to
+        title = "LS Cab&CO",
+        message = 'When ever you need a ride or your stuck with no ride whilst out partying with friends. Call Cab&CO, they will come to the rescue. for a not so small fee of course.',
+    },
+    {
+        coords = vector3(878.34, -11.71, 78.21),
         title = "Diamond Casino",
-        message = 'When you are all out of luck, Come to the Diamond Casino, Your luck might just change!.',
+        message = 'When you are all out of luck, Come to the Diamond Casino, Your luck might just change! but most likley not!.',
+    },
+    {
+        coords = vector3(215.26, -937.01, 24.14), -- coords the ped drives to
+        title = "Public Parking Stations",
+        message = 'When ever you need to park your ride, you can just drop it off at any parking station around the city, dont worry your vehicle will be there when you return.',
+    },
+    {
+        coords = vector3(-228.77, -888.67, 29.93), -- coords the ped drives to
+        title = "LS Job Centre",
+        message = 'Go to LS Job Centre and find your future career, dont forgot to pick up you paycheck whilst your here. dont be a freeloader!',
     }
 }
 
-Config.EndCoords = vector3(-1037.86, -2737.73, 20.17) -- where the player is teleported after the tour
+Config.EndCoords = vector3(-1033.98, -2728.44, 13.75) -- where the player is teleported after the tour
