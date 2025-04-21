@@ -6,6 +6,7 @@ Config.AllowSkip = true -- if you want the player to be able to skip the drive t
 
 Config.PedModel = `cs_jimmydisanto`   --  S_M_M_LSMetro_01  -  u_m_m_jewelsec_01 - ig_g
 Config.AnimationScenario = 'WORLD_HUMAN_SMOKING' -- Replace with your desired animation scenario
+Config.AnimationScenariotxt = 'WORLD_HUMAN_STAND_MOBILE' -- Replace with your desired animation scenario
 
 Config.CarModel = `comet7`   ---  comet7 - windsor2 - buccaneer2 - vigero3 - dominator9 - rt3000 - tornado5 - tornado2 - surano - rapidgt2 - ninef2 - zion2 - felon2 - convertable vehicles
 Config.RoofState = "down" -- Set roof "up" or "down" used for convertible vehicle's
@@ -18,7 +19,7 @@ Config.StartPedCoords = vector4(-1043.34, -2738.80, 12.94, 323.42) -- the ped yo
 
 Config.CarSpawn = vector4(-1090.7405, -2683.4019, 13.4173, 268.6733) -- this is where the car spawns for the cinematic camera
 
-Config.CarDriveTo = vector3(-1037.91, -2720.37, 13.35) -- where the car drives to pick the player up
+Config.CarDriveTo = vector3(-1031.97, -2723.29, 13.70) -- where the car drives to pick the player up
 
 Config.TourPoints = {
     {
