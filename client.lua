@@ -1,4 +1,5 @@
 local tourPoints = Config.TourPoints
+local endpoint = Config.EndCoords
 
 CreateThread(function()
     local startPedModel = Config.PedModel
@@ -6,14 +7,20 @@ CreateThread(function()
     while not HasModelLoaded(startPedModel) do Wait(0) end
 
     local ped = CreatePed(0, startPedModel, Config.StartPedCoords, false, true)
-    FreezeEntityPosition(ped, true)
+    FreezeEntityPosition(ped, false)
     SetEntityInvincible(ped, true)
     SetBlockingOfNonTemporaryEvents(ped, true)
+
+    -- Start the animation based on the config file
+    if Config.AnimationScenario then
+        TaskStartScenarioInPlace(ped, Config.AnimationScenario, 0, true)
+    end
 
     exports.ox_target:addLocalEntity(ped, {
         {
             icon = 'fa-solid fa-map-location-dot',
-            label = 'Start City Tour',
+            label = 'Free 20min City Tour',
+			distance = 5.0,
             onSelect = function()
                 TriggerServerEvent('tropic-cityguide:startTour')
             end
@@ -28,7 +35,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
     local spawnPoint = Config.CarSpawn
     local driveto = Config.CarDriveTo
     local vehicleModel = Config.CarModel
-    local driverModel = Config.PedModel
+    local driverModel = Config.PedModelDriver
     local roofState = Config.RoofState -- Get roof state from config ("up" or "down")
     local numberPlate = Config.NumberPlateText -- Get number plate text from config
 
@@ -44,23 +51,23 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
         Wait(10)
     end
 
-    local vehicle = CreateVehicle(vehicleModel, spawnPoint.x, spawnPoint.y, spawnPoint.z, spawnPoint.w, true, false)
+	local vehicle = CreateVehicle(vehicleModel, spawnPoint.x, spawnPoint.y, spawnPoint.z, spawnPoint.w, true, false)
 
-    -- Assign number plate text
-    SetVehicleNumberPlateText(vehicle, numberPlate)
+	-- Adjust the convertible roof state
+	if roofState == "down" then
+		LowerConvertibleRoof(vehicle) -- Lower the roof
+	elseif roofState == "up" then
+		RaiseConvertibleRoof(vehicle) -- Raise the roof
+	end
 
-    -- Set convertible roof state based on config
-    if roofState == "down" then
-        SetVehicleExtra(vehicle, Config.VehicleRoofDownExtra, 0) -- Enable roof down
-        --SetVehicleExtra(vehicle, Config.VehicleRoofUpExtra, 1)   -- Disable roof up
-    elseif roofState == "up" then
-        SetVehicleExtra(vehicle, Config.VehicleRoofUpExtra, 0)   -- Enable roof up
-        --SetVehicleExtra(vehicle, Config.VehicleRoofDownExtra, 1) -- Disable roof down
-    end
-        
+	-- Assign number plate text
+	SetVehicleNumberPlateText(vehicle, numberPlate)
+
+
     local driver = CreatePedInsideVehicle(vehicle, 4, driverModel, -1, true, false)
     DoScreenFadeIn(3000)
     TaskVehicleDriveToCoordLongrange(driver, vehicle, driveto, 10.0, 786603, 5.0)
+
 
     local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
     AttachCamToEntity(cam, vehicle, -10.0, 0.0, 5.0, true)
@@ -87,7 +94,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
         TaskGoToEntity(ped, vehicle, -1, 3.0, 1.0, 1073741824, 0)
         while #(GetEntityCoords(ped) - GetEntityCoords(vehicle)) > 3.5 do Wait(0) end
     
-        TaskEnterVehicle(ped, vehicle, -1, 2, 1.0, 1, 0)
+        TaskEnterVehicle(ped, vehicle, -1, 0, 1.0, 1, 0)
         while not IsPedInVehicle(ped, vehicle, false) do Wait(0) end
     end
 
@@ -142,19 +149,33 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
                 centered = true,
                 cancel = false
             })
-            Wait(4000)
+            Wait(3000)
         end
 
-       DoScreenFadeOut(500)
-       while not IsScreenFadedOut() do Wait(10) end
+	--  options on how to end tour
+	if Config.ReturnToStart then
+		-- Code for spawning back at the starting point
+		DoScreenFadeOut(500)
+		while not IsScreenFadedOut() do Wait(10) end
 
-       DeleteEntity(vehicle)
-       DeleteEntity(driver)
+		DeleteEntity(vehicle)
+		DeleteEntity(driver)
 
-       SetEntityCoords(ped, Config.EndCoords) 
+		SetEntityCoords(ped, Config.EndCoords)
 
-       Wait(500)
-       DoScreenFadeIn(1000)
+		Wait(500)
+		DoScreenFadeIn(1000)
+	else
+		-- Code for exiting the vehicle
+		TaskLeaveVehicle(ped, vehicle, 0)
+		Wait(3000)
+
+		TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
+		Wait(30000)
+
+		DeleteEntity(vehicle)
+		DeleteEntity(driver)
+	end
 
         TriggerServerEvent('tropic-cityguide:endTour')
         lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
