@@ -6,7 +6,6 @@ author 'TropicGalxy'
 description 'simple and easy city guide'
 version '1.0.0'
 
-shared_script 'config.lua'
 
 server_scripts {
     'server.lua'
@@ -15,4 +14,12 @@ server_scripts {
 client_scripts {
     '@ox_lib/init.lua', 
     'client.lua'
+}
+shared_scripts {
+	'shared/config.lua',
+	'shared/core.lua'
+}
+
+files {
+	'locales/*.json',
 }

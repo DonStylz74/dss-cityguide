@@ -1,6 +1,8 @@
 local tourPoints = Config.TourPoints
 local endpoint = Config.EndCoords
 
+lib.locale()
+
 CreateThread(function()
     local startPedModel = Config.PedModel
     lib.requestModel(startPedModel)
@@ -24,6 +26,8 @@ CreateThread(function()
             onSelect = function()
                 -- Play the ped animation
                 TaskStartScenarioInPlace(ped, Config.AnimationScenariotxt, 0, true)
+                --lib.notify({ title = 'Tour Guide', description = 'Give me a sec, let me call my Old Man', type = 'success', duration=4000 })
+				Config.Notification(locale("ped_phonecall"), "info", false)
                 Citizen.Wait(6000)
                 -- Play the ped animation
                 TaskStartScenarioInPlace(ped, Config.AnimationScenario, 0, true)
@@ -52,34 +56,28 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
         Wait(0)
     end
 
-    DoScreenFadeOut(1500)
+    DoScreenFadeOut(3000)
     while not IsScreenFadedOut() do
         Wait(10)
     end
 
 	local vehicle = CreateVehicle(vehicleModel, spawnPoint.x, spawnPoint.y, spawnPoint.z, spawnPoint.w, true, false)
 
-	-- Adjust the convertible roof state
-	if roofState == "down" then
-		LowerConvertibleRoof(vehicle) -- Lower the roof
-	elseif roofState == "up" then
-		RaiseConvertibleRoof(vehicle) -- Raise the roof
-	end
+    local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
+    AttachCamToEntity(cam, vehicle, -6.0, 0.0, 2.5, true)
+    PointCamAtEntity(cam, vehicle, 0.0, 0.0, 0.0, true)
+    SetCamActive(cam, true)
+    RenderScriptCams(true, true, 500, true, true)
 
 	-- Assign number plate text
 	SetVehicleNumberPlateText(vehicle, numberPlate)
 
-
     local driver = CreatePedInsideVehicle(vehicle, 4, driverModel, -1, true, false)
-    DoScreenFadeIn(3000)
+	Wait(500)
+
     TaskVehicleDriveToCoordLongrange(driver, vehicle, driveto, 10.0, 786603, 5.0)
 
-
-    local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
-    AttachCamToEntity(cam, vehicle, -7.0, 0.0, 2.5, true)
-    PointCamAtEntity(cam, vehicle, 0.0, 0.0, 0.0, true)
-    SetCamActive(cam, true)
-    RenderScriptCams(true, true, 1500, true, true)
+    DoScreenFadeIn(3000)
 
     while #(GetEntityCoords(vehicle) - driveto) > 8.0 do
         Wait(500)
@@ -99,18 +97,47 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
     
         TaskGoToEntity(ped, vehicle, -1, 3.0, 1.0, 1073741824, 0)
         while #(GetEntityCoords(ped) - GetEntityCoords(vehicle)) > 3.5 do Wait(0) end
-    
-        TaskEnterVehicle(ped, vehicle, -1, 0, 1.0, 1, 0)
-        while not IsPedInVehicle(ped, vehicle, false) do Wait(0) end
+
+	-- Adjust the convertible roof state
+	if roofState == "down" then
+		LowerConvertibleRoof(vehicle) -- Lower the roof
+		--lib.notify({ title = 'Tour Guide', description = 'Let me drop the roof down.', type = 'info', duration=3000 })
+		Config.Notification(locale("driver_droproof"), "info", false)
+	elseif roofState == "up" then
+			RaiseConvertibleRoof(vehicle) -- Raise the roof
+	end
+
+	Wait(2000)
+		Config.Notification(locale("driver_entercar"), "success", false)
+		--lib.notify({ title = 'Tour Guide', description = 'Jump In! Let me show you around the City of Los Santos', type = 'success', duration=4000 })
+
+	Wait(1500)
+    TaskEnterVehicle(ped, vehicle, -1, 0, 1.0, 1, 0)
+    while not IsPedInVehicle(ped, vehicle, false) do Wait(500) end
+
+    RenderScriptCams(false, true, 3000, true, true)
+    DestroyCam(cam, false)
+
+    Wait(2000)
+		Config.Notification(locale("driver_changeradio"), "info", false)
+		--lib.notify({ title = 'Tour Guide', description = 'Change the radio station to what ever you like.', type = 'info', duration=4000 })
+
+    Wait(4000)
+		Config.Notification(locale("passanger_optout"), "info", false)
+		--lib.notify({ title = 'Tour Guide', description = 'Feel free to jump out at any of the destinations we stop at, otherwise I can drop you at the Job Centre when were done.', type = 'success', duration=8000 })
     end
 
-    RenderScriptCams(false, true, 1500, true, true)
-    DestroyCam(cam, false)
 
     CreateThread(function()
         for i, point in ipairs(tourPoints) do
             if not IsPedInVehicle(ped, vehicle, false) then
                 lib.notify({ title = 'Tour Cancelled', description = 'You left the vehicle.', type = 'error' })
+				SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
+				TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
+				Wait(20000)
+
+				DeleteEntity(vehicle)
+				DeleteEntity(driver)
                 DeleteEntity(vehicle)
                 DeleteEntity(driver)
                 TriggerServerEvent('tropic-cityguide:endTour')
@@ -140,8 +167,12 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
             while #(GetEntityCoords(vehicle) - point.coords) > 15.0 and not skipPressed do
                 if not IsPedInVehicle(ped, vehicle, false) then
                     lib.notify({ title = 'Tour Cancelled', description = 'You left the vehicle.', type = 'error' })
-                    DeleteEntity(vehicle)
-                    DeleteEntity(driver)
+					SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
+					TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
+					Wait(20000)
+					
+					DeleteEntity(vehicle)
+					DeleteEntity(driver)
                     TriggerServerEvent('tropic-cityguide:endTour')
                     return
                 end
@@ -177,7 +208,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 		Wait(3000)
 
 		TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
-		Wait(30000)
+		Wait(20000)
 
 		DeleteEntity(vehicle)
 		DeleteEntity(driver)
