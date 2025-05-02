@@ -21,14 +21,14 @@ CreateThread(function()
     exports.ox_target:addLocalEntity(ped, {
         {
             icon = 'fa-solid fa-map-location-dot',
-            label = 'Free 20min City Tour',
+            label = 'Free 25min City Tour',
 			distance = 5.0,
             onSelect = function()
                 -- Play the ped animation
                 TaskStartScenarioInPlace(ped, Config.AnimationScenariotxt, 0, true)
                 --lib.notify({ title = 'Tour Guide', description = 'Give me a sec, let me call my Old Man', type = 'success', duration=4000 })
 				Config.Notification(locale("ped_phonecall"), "info", false)
-                Citizen.Wait(6000)
+                Citizen.Wait(6500)
                 -- Play the ped animation
                 TaskStartScenarioInPlace(ped, Config.AnimationScenario, 0, true)
                 -- Trigger the server event
@@ -77,7 +77,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 
     TaskVehicleDriveToCoordLongrange(driver, vehicle, driveto, 10.0, 786603, 5.0)
 
-    DoScreenFadeIn(3000)
+    DoScreenFadeIn(3500)
 
     while #(GetEntityCoords(vehicle) - driveto) > 8.0 do
         Wait(500)
@@ -118,11 +118,11 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
     RenderScriptCams(false, true, 3000, true, true)
     DestroyCam(cam, false)
 
-    Wait(2000)
+    Wait(1000)
 		Config.Notification(locale("driver_changeradio"), "info", false)
 		--lib.notify({ title = 'Tour Guide', description = 'Change the radio station to what ever you like.', type = 'info', duration=4000 })
 
-    Wait(4000)
+    Wait(5000)
 		Config.Notification(locale("passanger_optout"), "info", false)
 		--lib.notify({ title = 'Tour Guide', description = 'Feel free to jump out at any of the destinations we stop at, otherwise I can drop you at the Job Centre when were done.', type = 'success', duration=8000 })
     end
@@ -134,10 +134,10 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
                 lib.notify({ title = 'Tour Cancelled', description = 'You left the vehicle.', type = 'error' })
 				SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
 				TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
-				Wait(20000)
+				--lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
+				Config.Notification(locale("passanger_exit"), "green", false)
+				Wait(40000)
 
-				DeleteEntity(vehicle)
-				DeleteEntity(driver)
                 DeleteEntity(vehicle)
                 DeleteEntity(driver)
                 TriggerServerEvent('tropic-cityguide:endTour')
@@ -169,7 +169,9 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
                     lib.notify({ title = 'Tour Cancelled', description = 'You left the vehicle.', type = 'error' })
 					SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
 					TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
-					Wait(20000)
+					--lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
+					Config.Notification(locale("passanger_exit"), "green", false)
+					Wait(40000)
 					
 					DeleteEntity(vehicle)
 					DeleteEntity(driver)
@@ -208,14 +210,15 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 		Wait(3000)
 
 		TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
-		Wait(20000)
+		Wait(40000)
 
 		DeleteEntity(vehicle)
 		DeleteEntity(driver)
 	end
 
         TriggerServerEvent('tropic-cityguide:endTour')
-        lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
+        --lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
+        Config.Notification(locale("tour_complete"), "green", false)
     end)
 end)
 
