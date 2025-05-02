@@ -135,7 +135,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 				SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
 				TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
 				--lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
-				Config.Notification(locale("passanger_exit"), "green", false)
+				Config.Notification(locale("passanger_exit"), "info", false)
 				Wait(40000)
 
                 DeleteEntity(vehicle)
@@ -170,7 +170,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 					SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
 					TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
 					--lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
-					Config.Notification(locale("passanger_exit"), "green", false)
+					Config.Notification(locale("passanger_exit"), "info", false)
 					Wait(40000)
 					
 					DeleteEntity(vehicle)
@@ -218,7 +218,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 
         TriggerServerEvent('tropic-cityguide:endTour')
         --lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
-        Config.Notification(locale("tour_complete"), "green", false)
+        Config.Notification(locale("tour_complete"), "success", false)
     end)
 end)
 
