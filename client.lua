@@ -122,7 +122,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 		Config.Notification(locale("driver_changeradio"), "info", false)
 		--lib.notify({ title = 'Tour Guide', description = 'Change the radio station to what ever you like.', type = 'info', duration=4000 })
 
-    Wait(5000)
+    Wait(3000)
 		Config.Notification(locale("passanger_optout"), "info", false)
 		--lib.notify({ title = 'Tour Guide', description = 'Feel free to jump out at any of the destinations we stop at, otherwise I can drop you at the Job Centre when were done.', type = 'success', duration=8000 })
     end
@@ -208,7 +208,8 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 		-- Code for exiting the vehicle
 		TaskLeaveVehicle(ped, vehicle, 0)
 		Wait(3000)
-
+		SetVehicleDoorsLockedForAllPlayers(vehicle, true)  --  lock doors if ped not in vehicle
+        Config.Notification(locale("tour_complete"), "success", false)
 		TaskVehicleDriveToCoordLongrange(driver, vehicle, endpoint.x, endpoint.y, endpoint.z, 25.0, 1074528293, 20.0)
 		Wait(40000)
 
@@ -218,7 +219,7 @@ RegisterNetEvent('tropic-cityguide:beginTourClient', function(bucket)
 
         TriggerServerEvent('tropic-cityguide:endTour')
         --lib.notify({ title = 'Tour Complete', description = 'Hope you enjoyed!', type = 'success' })
-        Config.Notification(locale("tour_complete"), "success", false)
+        --Config.Notification(locale("tour_complete"), "success", false)
     end)
 end)
 
