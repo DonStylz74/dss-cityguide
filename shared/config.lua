@@ -10,12 +10,12 @@ Config.AnimationScenariotxt = 'WORLD_HUMAN_STAND_MOBILE' -- Replace with your de
 
 Config.CarModel = `comet7`   ---  comet7 - windsor2 - buccaneer2 - vigero3 - dominator9 - rt3000 - tornado5 - tornado2 - surano - rapidgt2 - ninef2 - zion2 - felon2 - convertable vehicles
 Config.RoofState = "down" -- Set roof "up" or "down" used for convertible vehicle's
-Config.NumberPlateText = "mdesanta" -- Set your desired number plate text
+Config.NumberPlateText = "de santa" -- Set your desired number plate text
 Config.PedModelDriver = `player_zero`   --  S_M_M_LSMetro_01  -  u_m_m_jewelsec_01
 
 Config.ReturnToStart = false -- Toggle end tour spawn option ('true' to spawn back to starting ped, 'false' to exit the vehicle)
 
-Config.StartPedCoords = vector4(-1043.34, -2738.80, 12.94, 323.42) -- the ped you target coords  -1043.4436, -2737.9719, 20.1693, 204.1283
+Config.StartPedCoords = vector4(-1027.3092, -2736.9353, 12.8517, 39.9030) -- the ped you target coords  -1043.4436, -2737.9719, 20.1693, 204.1283
 
 Config.CarSpawn = vector4(-1090.7405, -2683.4019, 13.4173, 268.6733) -- this is where the car spawns for the cinematic camera
 
