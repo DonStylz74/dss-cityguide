@@ -23,14 +23,9 @@ Config.CarDriveTo = vector3(-1033.49, -2722.59, 13.70) -- where the car drives t
 
 Config.TourPoints = {
 		{
-			coords = vector3( -180.71, -2157.74, 16.70 ), -- coords the ped drives to
-			title = "Go-Kart Racing",
-			message = 'If you love the smell of fuel & loud noise, then this is your place. race karts around a massive split indoor-outdoor curcuit.',
-		},
-		{
-			coords = vector3( 281.50, -1262.61, 29.22 ), -- coords the ped drives to
-			title = "Fuel Stations",
-			message = 'You can go to one of the many Gas Stations around the city to get fuel for your vehicles as well as your basic food & drink needs, and who knows maybe you can take some cash from those registers or safes.',
+			coords = vector3( -150.06, -2010.50, 22.70 ), -- coords the ped drives to
+			title = "Go-Karting & Bus Terminal",
+			message = 'Feel the adrenaline as you race high-speed karts around a sprawling indoor-outdoor circuit. this destination is a paradise for motorsport enthusiasts. Bus Terminals are located nearby which connects you to metro and coach services',
 		},
 		{
 			coords = vector3( 254.50, -1157.25, 29.21 ), -- coords the ped drives to 254.5099, -1157.2513, 29.2191, 277.0713
@@ -50,7 +45,12 @@ Config.TourPoints = {
 		{
 			coords = vector3( 96.27, -1400.91, 29.20 ), -- coords the ped drives to
 			title = "Clothing Stores",
-			message = 'You can go to one of the Clothing Stores around the city to get your fashion fix, Shirts, Shorts, Hats. You name it they have it!.',
+			message = 'You can go any of the diffrent clothing stores around the city to get your fashion fix, jackets, pants, accessories. You name it they will have it!.',
+		},
+		{
+			coords = vector3( -709.33, -934.36, 19.01 ), -- coords the ped drives to
+			title = "Fuel Stations & Car Washes",
+			message = 'You can go to one of the many gas stations around the city to get fuel as well as basic items, Wash you car at any of the car washes around the city.',
 		},
 		{
 			coords = vector3( -794.01, -1325.50, 5.00 ), -- coords the ped drives to
@@ -60,12 +60,12 @@ Config.TourPoints = {
 		{
 			coords = vector3( -1079.33, -1282.77, 5.70 ), -- coords the ped drives to
 			title = "Los Santos DMV",
-			message = 'So want to drive a vehicle?, Make sure you stop here to pick up an appropriate license.',
+			message = 'So want to drive a vehicle?, Make sure you stop here to pick up the appropriate required license.',
 		},
 		{
 			coords = vector3( -1158.34, -1415.34, 4.79 ), -- coords the ped drives to
 			title = "Tattoo Stores",
-			message = 'You can go to one of the many Tattoo Stores around the city to get yourself a fresh looking tattoo.',
+			message = 'You can go to one of the many Tattoo Stores around the city to get yourself a fresh looking tattoo. Ive heard there is a weed store close by around here',
 		},
 		{
 			coords = vector3( -1236.44, -898.96, 12.00 ), -- coords the ped drives to
@@ -79,7 +79,7 @@ Config.TourPoints = {
 		},
 		{
 			coords = vector3( -373.57, -128.12, 38.68 ), -- coords the ped drives to
-			title = "Los Santos Custom   s",
+			title = "Los Santos Customs",
 			message = 'You can go to one of the many Los Santos Customs around the city to get your vehciles Repair, Upgraded and Customized at a great price!.',
 		},
 		{
@@ -88,9 +88,19 @@ Config.TourPoints = {
 			message = 'You can go to one of the many Ammunation Stores the around city to get to get yourself some personal protection. Knives, Guns, Armour. You name it they have it!.',
 		},
 		{
+			coords = vector3( -80.06, 85.44, 71.48 ), -- coords the ped drives to
+			title = "Used Vehicle Dealerships",
+			message = 'You can go to any of the used vehicle dealerships around the city to get to get yourself a new ride at a great price.',
+		},
+		{
 			coords = vector3( 373.93, 314.23, 102.85 ), -- coords the ped drives to
 			title = "24/7 Stores",
 			message = 'You can go to one of the many 24/7s around city to get your basic food & drink needs, and who knows maybe you can take some cash from those registers or safes.',
+		},
+		{
+			coords = vector3( -553.75, 303.96, 83.28 ), -- coords the ped drives to
+			title = "Tequi la la & Social Venues",
+			message = 'Checkout the diffrent venues around the city. Bars, Clubs, Hangouts & even illegal underground fight clubs.',
 		},
 		{
 			coords = vector3( -481.07, 271.93, 83.22 ), -- coords the ped drives to
@@ -98,7 +108,12 @@ Config.TourPoints = {
 			message = 'You can go to one of the many pawnshops around city if you need to sell something or even pick up a rare find. dont expect a hi dollar on your sold items from these sharks!.',
 		},
 		{
-			coords = vector3( 317.18, -266.93, 53.25 ), -- coords the ped drives to
+			coords = vector3( -711.62, 278.05, 84.28 ), -- coords the ped drives to
+			title = "Real Estate Agency",
+			message = 'Head over to the Real Estate Agents if you need to buy yourself a house or appartment.',
+		},
+		{
+			coords = vector3( -1194.07, -316.43, 37.75 ), -- coords the ped drives to
 			title = "Fleeca Banks",
 			message = 'You can go to one of the many fleeca banks around city to withdraw/deposit your money, i wonder how much money is in the vault back there.',
 		},
@@ -115,7 +130,7 @@ Config.TourPoints = {
 		{
 			coords = vector3( 215.26, -937.01, 24.14 ), -- coords the ped drives to
 			title = "Public Parking Stations",
-			message = 'When ever you need to park your ride, you can just drop it off at any parking station around the city, dont worry your vehicle will be there when you return.',
+			message = 'When ever you need to park your ride, you can just drop it off at any public parking station around the city, dont worry your vehicle will be there when you return.',
 		},
 		{
 			coords = vector3( 402.52, -980.30, 29.39 ), -- coords the ped drives to
@@ -125,7 +140,7 @@ Config.TourPoints = {
 		{
 			coords = vector3( 919.08, -190.48, 73.51 ), -- coords the ped drives to
 			title = "LS Cab&CO",
-			message = 'When ever you need a ride or your stuck with no ride whilst out partying with friends. Call Cab&CO, they will come to the rescue. for a not so small fee of course.',
+			message = 'When ever you need a ride or your stuck with no ride whilst out partying with friends. Call Cab&CO, they will come to the rescue. for a not so small fee of course. Call a Cab from anywhere with /taxi',
 		},
 		{
 			coords = vector3( 878.34, -11.71, 78.21 ),
