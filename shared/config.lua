@@ -143,7 +143,7 @@ Config.TourPoints = {
 			message = 'When ever you need a ride or your stuck with no ride whilst out partying with friends. Call Cab&CO, they will come to the rescue. for a not so small fee of course. Call a Cab from anywhere with /taxi',
 		},
 		{
-			coords = vector3( 878.34, -11.71, 78.21 ),
+			coords = vector3( 913.14, 42.42, 80.89 ),
 			title = "Diamond Casino",
 			message = 'When you are all out of luck, Come to the Diamond Casino, Your luck might just change! but most likley not!.',
 		},
