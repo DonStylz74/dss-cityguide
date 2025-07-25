@@ -14,4 +14,4 @@ the only dependency is ox_lib and ox_target
 
 support: https://dsc.gg/tropicgalxy
 
-**credit to TropicGalxy** for the original code.
+**All credits to TropicGalxy** for the original code.
